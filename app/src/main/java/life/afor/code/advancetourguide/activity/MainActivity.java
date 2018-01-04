@@ -1,9 +1,11 @@
-package life.afor.code.advancetourguide;
+package life.afor.code.advancetourguide.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import life.afor.code.advancetourguide.R;
 
 public class MainActivity extends AppCompatActivity {
 
