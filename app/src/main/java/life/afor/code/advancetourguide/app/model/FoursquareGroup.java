@@ -15,4 +15,7 @@ public class FoursquareGroup {
     // A results list within the group.
     List<FoursquareResults> results = new ArrayList<FoursquareResults>();
 
+    public List<FoursquareResults> getResults() {
+        return results;
+    }
 }

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 askForPermission();
-                launchIntent(getTopPicsButton().getText().toString());
+                launchIntent("topPicks");
             }
         });
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 askForPermission();
-                launchIntent(getFoodButton().getText().toString());
+                launchIntent("food");
             }
         });
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 askForPermission();
-                launchIntent(getCafeButton().getText().toString());
+                launchIntent("coffee");
             }
         });
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 askForPermission();
-                launchIntent(getNightLifeButton().getText().toString());
+                launchIntent("drinks");
             }
         });
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 askForPermission();
-                launchIntent(getFunButton().getText().toString());
+                launchIntent("outdoors");
             }
         });
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 askForPermission();
-                launchIntent(getShoppingButton().getText().toString());
+                launchIntent("shops");
             }
         });
     }
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity{
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             startActivity(getIntentType(name));
         } else {
-            Toast.makeText(getApplicationContext(), "Advance Tour Guide is missing permissions to access your location!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Advance Tour Guide is missing permissions to access your location!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -95,23 +95,23 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private Button getFoodButton(){
-        return (Button)findViewById(R.id.top_pics);
+        return (Button)findViewById(R.id.food);
     }
 
     private Button getCafeButton(){
-        return (Button)findViewById(R.id.top_pics);
+        return (Button)findViewById(R.id.cafe);
     }
 
     private Button getNightLifeButton(){
-        return (Button)findViewById(R.id.top_pics);
+        return (Button)findViewById(R.id.night_life);
     }
 
     private Button getFunButton(){
-        return (Button)findViewById(R.id.top_pics);
+        return (Button)findViewById(R.id.fun);
     }
 
     private Button getShoppingButton(){
-        return (Button)findViewById(R.id.top_pics);
+        return (Button)findViewById(R.id.shopping);
     }
 
 }

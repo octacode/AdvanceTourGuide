@@ -12,4 +12,11 @@ public class FoursquareJSON {
     // A response object within the JSON.
     FoursquareResponse response;
 
+    public FoursquareResponse getResponse() {
+        return response;
+    }
+
+    public void setResponse(FoursquareResponse response) {
+        this.response = response;
+    }
 }

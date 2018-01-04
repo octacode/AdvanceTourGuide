@@ -16,4 +16,19 @@ public class FoursquareResponse {
     FoursquareGroup group;
     List<FoursquareVenue> venues = new ArrayList<>();
 
+    public FoursquareGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(FoursquareGroup group) {
+        this.group = group;
+    }
+
+    public List<FoursquareVenue> getVenues() {
+        return venues;
+    }
+
+    public void setVenues(List<FoursquareVenue> venues) {
+        this.venues = venues;
+    }
 }
