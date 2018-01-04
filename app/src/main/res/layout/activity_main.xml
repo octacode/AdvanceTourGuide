@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context="life.afor.code.advancetourguide.MainActivity">
+
+    <Button
+        android:padding="16sp"
+        android:layout_margin="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/top_pics"
+        android:text="Top Pics" />
+
+    <Button
+        android:padding="16sp"
+        android:layout_margin="16sp"
+        android:layout_width="wrap_content"
+        android:id="@+id/food"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Food" />
+
+    <Button
+        android:padding="16sp"
+        android:id="@+id/cafe"
+        android:layout_margin="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Cafe" />
+
+    <Button
+        android:padding="16sp"
+        android:id="@+id/night_life"
+        android:layout_margin="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Night life" />
+
+    <Button
+        android:padding="16sp"
+        android:id="@+id/fun"
+        android:layout_margin="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Fun"
+        />
+
+    <Button
+        android:padding="16sp"
+        android:id="@+id/shopping"
+        android:layout_margin="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Shopping"
+        />
+</LinearLayout>
