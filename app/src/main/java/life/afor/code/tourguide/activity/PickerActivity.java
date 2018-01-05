@@ -16,6 +16,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import life.afor.code.tourguide.R;
@@ -63,7 +65,7 @@ public class PickerActivity extends AppCompatActivity implements
                         .baseUrl(foursquareBaseURL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
-                FoursquareService foursquare = retrofit.create(FoursquareService.class);
+                final FoursquareService foursquare = retrofit.create(FoursquareService.class);
 
                 Call<FoursquareJSON> stpcall = foursquare.snapToPlace(
                         getString(R.string.foursquare_client_id),
@@ -95,6 +97,12 @@ public class PickerActivity extends AppCompatActivity implements
                         FoursquareResponse fr = fjson.getResponse();
                         FoursquareGroup fg = fr.getGroup();
                         List<FoursquareResults> frs = fg.getResults();
+                        Collections.sort(frs, new Comparator<FoursquareResults>() {
+                            @Override
+                            public int compare(FoursquareResults foursquareResults, FoursquareResults t1) {
+                                return Double.compare(t1.getVenue().getRating(), foursquareResults.getVenue().getRating());
+                            }
+                        });
                         RecyclerView recv = (RecyclerView)findViewById(R.id.recv);
                         PickerAdapter pickerAdapter = new PickerAdapter(frs);
                         recv.setLayoutManager(new LinearLayoutManager(PickerActivity.this));
