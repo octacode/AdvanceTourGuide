@@ -20,10 +20,12 @@ public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.PickerView
     }
 
     public class PickerViewHolder extends RecyclerView.ViewHolder{
-        private TextView title;
+        private TextView title, rating, address;
         public PickerViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
+            address = (TextView) itemView.findViewById(R.id.address);
+            rating = (TextView) itemView.findViewById(R.id.rating);
         }
     }
 
@@ -34,7 +36,9 @@ public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.PickerView
 
     @Override
     public void onBindViewHolder(PickerViewHolder holder, int position) {
-        holder.title.setText(foursquareResults.get(position).getVenue().getName()+" "+foursquareResults.get(position).getVenue().getRating());
+        holder.title.setText(foursquareResults.get(position).getVenue().getName());
+        holder.rating.setText(String.valueOf(foursquareResults.get(position).getVenue().getRating()));
+        holder.address.setText(foursquareResults.get(position).getVenue().getLocation().address);
     }
 
     @Override

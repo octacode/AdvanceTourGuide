@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         setClicks();
         checkEnabled();
+        askForPermission();
     }
 
     private void setClicks() {
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity{
         getTopPicsButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askForPermission();
                 launchIntent("topPicks");
             }
         });
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity{
         getFoodButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askForPermission();
                 launchIntent("food");
             }
         });
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity{
         getCafeButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askForPermission();
                 launchIntent("coffee");
             }
         });
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity{
         getNightLifeButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askForPermission();
                 launchIntent("drinks");
             }
         });
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity{
         getFunButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askForPermission();
                 launchIntent("outdoors");
             }
         });
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity{
         getShoppingButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askForPermission();
                 launchIntent("shops");
             }
         });
@@ -133,28 +129,28 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private Button getTopPicsButton(){
-        return (Button)findViewById(R.id.top_pics);
+    private CardView getTopPicsButton(){
+        return (CardView) findViewById(R.id.top_pics);
     }
 
-    private Button getFoodButton(){
-        return (Button)findViewById(R.id.food);
+    private CardView getFoodButton(){
+        return (CardView)findViewById(R.id.food);
     }
 
-    private Button getCafeButton(){
-        return (Button)findViewById(R.id.cafe);
+    private CardView getCafeButton(){
+        return (CardView)findViewById(R.id.cafe);
     }
 
-    private Button getNightLifeButton(){
-        return (Button)findViewById(R.id.night_life);
+    private CardView getNightLifeButton(){
+        return (CardView)findViewById(R.id.night_life);
     }
 
-    private Button getFunButton(){
-        return (Button)findViewById(R.id.fun);
+    private CardView getFunButton(){
+        return (CardView)findViewById(R.id.fun);
     }
 
-    private Button getShoppingButton(){
-        return (Button)findViewById(R.id.shopping);
+    private CardView getShoppingButton(){
+        return (CardView)findViewById(R.id.shopping);
     }
 
 }

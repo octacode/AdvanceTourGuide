@@ -10,7 +10,7 @@ package life.afor.code.tourguide.app.model;
 public class FoursquareLocation {
 
     // The address of the location.
-    String address;
+    public String address;
 
     // The latitude of the location.
     double lat;
