@@ -1,4 +1,4 @@
-package life.afor.code.advancetourguide.adapter;
+package life.afor.code.tourguide.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import life.afor.code.advancetourguide.R;
-import life.afor.code.advancetourguide.app.model.FoursquareResults;
+import life.afor.code.tourguide.R;
+import life.afor.code.tourguide.app.model.FoursquareResults;
 
 public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.PickerViewHolder>{
 

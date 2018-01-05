@@ -5,9 +5,9 @@
  * FoursquareService provides a Retrofit interface for the Foursquare API.
  */
 
-package life.afor.code.advancetourguide.app.refs;
+package life.afor.code.tourguide.app.refs;
 
-import life.afor.code.advancetourguide.app.model.FoursquareJSON;
+import life.afor.code.tourguide.app.model.FoursquareJSON;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

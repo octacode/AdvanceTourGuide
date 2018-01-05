@@ -1,4 +1,4 @@
-package life.afor.code.advancetourguide;
+package life.afor.code.tourguide;
 
 import org.junit.Test;
 

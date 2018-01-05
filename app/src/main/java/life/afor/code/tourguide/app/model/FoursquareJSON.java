@@ -5,7 +5,7 @@
  * FoursquareJSON describes a JSON response from the Foursquare API.
  */
 
-package life.afor.code.advancetourguide.app.model;
+package life.afor.code.tourguide.app.model;
 
 public class FoursquareJSON {
 

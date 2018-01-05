@@ -5,7 +5,7 @@
  * FoursquareResponse describes a response object from the Foursquare API.
  */
 
-package life.afor.code.advancetourguide.app.model;
+package life.afor.code.tourguide.app.model;
 
 import java.util.ArrayList;
 import java.util.List;

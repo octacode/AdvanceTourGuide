@@ -1,4 +1,4 @@
-package life.afor.code.advancetourguide;
+package life.afor.code.tourguide;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("life.afor.code.advancetourguide", appContext.getPackageName());
+        assertEquals("life.afor.code.tourguide", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package life.afor.code.advancetourguide.activity;
+package life.afor.code.tourguide.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,14 +18,14 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.List;
 
-import life.afor.code.advancetourguide.R;
-import life.afor.code.advancetourguide.adapter.PickerAdapter;
-import life.afor.code.advancetourguide.app.model.FoursquareGroup;
-import life.afor.code.advancetourguide.app.model.FoursquareJSON;
-import life.afor.code.advancetourguide.app.model.FoursquareResponse;
-import life.afor.code.advancetourguide.app.model.FoursquareResults;
-import life.afor.code.advancetourguide.app.model.FoursquareVenue;
-import life.afor.code.advancetourguide.app.refs.FoursquareService;
+import life.afor.code.tourguide.R;
+import life.afor.code.tourguide.adapter.PickerAdapter;
+import life.afor.code.tourguide.app.model.FoursquareGroup;
+import life.afor.code.tourguide.app.model.FoursquareJSON;
+import life.afor.code.tourguide.app.model.FoursquareResponse;
+import life.afor.code.tourguide.app.model.FoursquareResults;
+import life.afor.code.tourguide.app.model.FoursquareVenue;
+import life.afor.code.tourguide.app.refs.FoursquareService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -5,7 +5,7 @@
  * FoursquareResults describes a results object from the Foursquare API.
  */
 
-package life.afor.code.advancetourguide.app.model;
+package life.afor.code.tourguide.app.model;
 
 public class FoursquareResults {
 
