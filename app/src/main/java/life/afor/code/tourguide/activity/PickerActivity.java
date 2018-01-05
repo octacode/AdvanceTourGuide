@@ -44,6 +44,8 @@ public class PickerActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picker);
+        getSupportActionBar().setTitle(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -157,11 +159,12 @@ public class PickerActivity extends AppCompatActivity implements
                         userLL,
                         userLLAcc);
             default:
-                return foursquare.searchTopPicks(
+                return foursquare.searchPlaces(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
-                        userLLAcc);
+                        userLLAcc,
+                        getIntent().getStringExtra(Intent.EXTRA_TEXT));
         }
     }
 

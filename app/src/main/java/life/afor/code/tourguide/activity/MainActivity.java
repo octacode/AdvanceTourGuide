@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import life.afor.code.tourguide.R;
@@ -70,6 +72,16 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 launchIntent("shops");
+            }
+        });
+
+        getSearchButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getSearchText().getText().toString().trim().length() == 0)
+                    getSearchText().setError("Search text can't be left blank");
+                else
+                    launchIntent(getSearchText().getText().toString());
             }
         });
     }
@@ -153,4 +165,7 @@ public class MainActivity extends AppCompatActivity{
         return (CardView)findViewById(R.id.shopping);
     }
 
+    private ImageView getSearchButton() {return (ImageView)findViewById(R.id.search_button);}
+
+    private EditText getSearchText() {return (EditText)findViewById(R.id.searchtv);}
 }

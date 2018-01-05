@@ -56,4 +56,11 @@ public interface FoursquareService {
                                         @Query("ll") String ll,
                                         @Query("llAcc") double llAcc);
 
+    @GET("search/recommendations?v=20161101")
+    Call<FoursquareJSON> searchPlaces(@Query("client_id") String clientID,
+                                        @Query("client_secret") String clientSecret,
+                                        @Query("ll") String ll,
+                                        @Query("llAcc") double llAcc,
+                                        @Query("query") String place);
+
 }
