@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -40,6 +42,7 @@ public class PickerActivity extends AppCompatActivity implements
 
     GoogleApiClient mGoogleApiClient;
     private String foursquareBaseURL = "https://api.foursquare.com/v2/";
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class PickerActivity extends AppCompatActivity implements
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -106,6 +110,7 @@ public class PickerActivity extends AppCompatActivity implements
                                 return Double.compare(t1.getVenue().getRating(), foursquareResults.getVenue().getRating());
                             }
                         });
+                        progressBar.setVisibility(View.GONE);
                         RecyclerView recv = (RecyclerView)findViewById(R.id.recv);
                         PickerAdapter pickerAdapter = new PickerAdapter(frs);
                         recv.setLayoutManager(new LinearLayoutManager(PickerActivity.this));
