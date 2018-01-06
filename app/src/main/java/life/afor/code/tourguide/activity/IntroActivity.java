@@ -12,14 +12,11 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import life.afor.code.tourguide.R;
 import life.afor.code.tourguide.utils.Preferences;
 
-/**
- * Created by shasha on 6/1/18.
- */
-
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         addSlide(AppIntroFragment.newInstance("FIRST", "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem", R.drawable.background, Color.DKGRAY));
         addSlide(AppIntroFragment.newInstance("FIRST", "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem", R.drawable.background, Color.DKGRAY));
         addSlide(AppIntroFragment.newInstance("FIRST", "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem", R.drawable.background, Color.DKGRAY));
@@ -29,7 +26,8 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance("FIRST", "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem", R.drawable.background, Color.DKGRAY));
         addSlide(AppIntroFragment.newInstance("FIRST", "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem", R.drawable.background, Color.DKGRAY));
         addSlide(AppIntroFragment.newInstance("FIRST", "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem", R.drawable.background, Color.DKGRAY));
-        setSlideOverAnimation();
+
+        setFlowAnimation();
     }
 
     @Override

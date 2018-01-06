@@ -23,9 +23,11 @@ public class SplashActivity extends Activity {
                 if(Preferences.getFirstRun(SplashActivity.this))
                     startActivity(new Intent(SplashActivity.this, IntroActivity.class));
                 else {
-                    if(Preferences.isLoggedIn(SplashActivity.this)) {
+                    if(!Preferences.isLoggedIn(SplashActivity.this)) {
                         startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     }
+                    else
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }
             }
         }, SPLASH_TIME_OUT);

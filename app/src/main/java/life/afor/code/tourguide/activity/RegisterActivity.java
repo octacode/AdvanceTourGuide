@@ -1,6 +1,7 @@
 package life.afor.code.tourguide.activity;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import life.afor.code.tourguide.R;
 import life.afor.code.tourguide.db.MyDatabase;
 import life.afor.code.tourguide.db.model.User;
+import life.afor.code.tourguide.utils.Preferences;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                     password.setError("Can't be left empty");
                 else if(confirmPassword.getText().toString().trim().length() == 0)
                     confirmPassword.setError("Can't be left empty");
-                else if(password.getText().toString().matches(confirmPassword.getText().toString()))
+                else if(!password.getText().toString().matches(confirmPassword.getText().toString()))
                     confirmPassword.setError("Password doesn't match");
                 else {
                     User user = new User();
@@ -49,6 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
                     user.setContactNo(contactNo.getText().toString().trim());
                     user.setPassword(password.getText().toString().trim());
                     new InsertDb().execute(user);
+                    Preferences.setUserID(RegisterActivity.this, user.getContactNo());
+                    Preferences.setLoggedIn(RegisterActivity.this);
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 }
             }
         });

@@ -3,31 +3,22 @@ package life.afor.code.tourguide.db.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-/**
- * Created by shasha on 6/1/18.
- */
 
 @Entity(tableName = "user")
 public class User {
-    @PrimaryKey
-    int id;
-
     @ColumnInfo
     String firstName;
 
     @ColumnInfo
     String lastName;
 
-    @ColumnInfo
+    @PrimaryKey @NonNull
     String contactNo;
 
     @ColumnInfo
     String password;
-
-    public int getId() {
-        return id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -43,10 +34,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setFirstName(String firstName) {

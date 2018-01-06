@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextInputEditText nameET, passwordET;
     private Button login;
-    private TextView register;
+    private TextView register, total;
 
     private MyDatabase myDatabase;
 
@@ -41,6 +41,17 @@ public class LoginActivity extends AppCompatActivity {
         passwordET = (TextInputEditText) findViewById(R.id.password_tv);
         register = (TextView) findViewById(R.id.register_button);
         login = (Button) findViewById(R.id.login_button);
+        total = (TextView) findViewById(R.id.total);
+
+        try {
+            List<User> allUsers = new FetchUsers().execute().get();
+            total.setText("Total number of users are "+allUsers.size());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                         else {
                             Preferences.setLoggedIn(LoginActivity.this);
-                            Preferences.setUserID(LoginActivity.this, index);
+                            Preferences.setUserID(LoginActivity.this, allUsers.get(index).getContactNo());
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         }
                     } catch (InterruptedException e) {
@@ -80,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     private int getIndexOf(List<User> allEmps, String username, String password) {
         for (int i = 0; i < allEmps.size(); i++) {
             if (username.matches(allEmps.get(i).getFirstName()) && password.matches(allEmps.get(i).getPassword())) {
-                return allEmps.get(i).getId();
+                return i;
             }
         }
         return -1;

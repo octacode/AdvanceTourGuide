@@ -21,8 +21,8 @@ public interface UserDao {
     @Query("Select * from user")
     List<User> fetchAllUsers();
 
-    @Query("Select * from user where id =:id")
-    User getUser(int id);
+    @Query("Select * from user where contactNo =:contactNo")
+    User getUser(String contactNo);
 
     @Update
     public void updateUser(User user);

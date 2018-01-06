@@ -12,13 +12,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import life.afor.code.tourguide.R;
+import life.afor.code.tourguide.utils.Preferences;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -168,4 +170,19 @@ public class MainActivity extends AppCompatActivity{
     private ImageView getSearchButton() {return (ImageView)findViewById(R.id.search_button);}
 
     private EditText getSearchText() {return (EditText)findViewById(R.id.searchtv);}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_log_out){
+            Preferences.logOut(this);
+            startActivity(new Intent(this, SplashActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

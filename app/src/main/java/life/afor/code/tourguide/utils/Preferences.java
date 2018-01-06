@@ -26,11 +26,11 @@ public class Preferences {
         context.getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isLoggedIn", false).apply();
     }
 
-    public static void setUserID(Context context, int id) {
-        context.getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putInt("userId", id).apply();
+    public static void setUserID(Context context, String id) {
+        context.getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("userId", id).apply();
     }
 
-    public static int getUserID(Context context) {
-        return context.getSharedPreferences("PREFERENCE", MODE_PRIVATE).getInt("userId", -1);
+    public static String getUserID(Context context) {
+        return context.getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("userId", "");
     }
 }
