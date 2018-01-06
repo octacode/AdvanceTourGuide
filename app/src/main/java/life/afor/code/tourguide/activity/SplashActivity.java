@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import life.afor.code.tourguide.R;
+import life.afor.code.tourguide.utils.Preferences;
 
 public class SplashActivity extends Activity {
 
@@ -19,9 +20,16 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                if(Preferences.getFirstRun(SplashActivity.this))
+                    startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+                else {
+                    if(Preferences.isLoggedIn(SplashActivity.this)) {
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    }
+                }
             }
         }, SPLASH_TIME_OUT);
+
     }
 
 }
