@@ -2,7 +2,10 @@ package life.afor.code.tourguide.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -13,15 +16,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.vision.text.Text;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import life.afor.code.tourguide.R;
 import life.afor.code.tourguide.adapter.PickerAdapter;
@@ -43,6 +51,7 @@ public class PickerActivity extends AppCompatActivity implements
     GoogleApiClient mGoogleApiClient;
     private String foursquareBaseURL = "https://api.foursquare.com/v2/";
     private ProgressBar progressBar;
+    private TextView locationTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,7 @@ public class PickerActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_picker);
         getSupportActionBar().setTitle(getIntent().getStringExtra(Intent.EXTRA_TEXT));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        locationTv = (TextView)findViewById(R.id.location);
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -67,7 +77,15 @@ public class PickerActivity extends AppCompatActivity implements
             if (mLastLocation != null) {
                 String userLL = mLastLocation.getLatitude() + "," + mLastLocation.getLongitude();
                 double userLLAcc = mLastLocation.getAccuracy();
-
+                locationTv.setText(userLL);
+                try {
+                    Address location = new fetchAddress().execute(userLL).get();
+                    locationTv.setText(location.getAddressLine(0));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(foursquareBaseURL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -202,5 +220,24 @@ public class PickerActivity extends AppCompatActivity implements
         if(item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
+    }
+
+    private class fetchAddress extends AsyncTask<String, Void, Address>{
+        @Override
+        protected Address doInBackground(String... strings) {
+            String ll[] = strings[0].split(",");
+            double lat = Double.parseDouble(ll[0]);
+            double lng = Double.parseDouble(ll[1]);
+
+            Geocoder geocoder;
+            List<Address> addresses = null;
+            geocoder = new Geocoder(PickerActivity.this, Locale.getDefault());
+            try {
+                addresses = geocoder.getFromLocation(lat,lng, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return addresses.get(0);
+        }
     }
 }
