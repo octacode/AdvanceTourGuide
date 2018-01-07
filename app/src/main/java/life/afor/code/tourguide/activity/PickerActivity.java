@@ -25,12 +25,14 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.vision.text.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
+import life.afor.code.tourguide.DetailActivity;
 import life.afor.code.tourguide.R;
 import life.afor.code.tourguide.adapter.PickerAdapter;
 import life.afor.code.tourguide.app.model.FoursquareGroup;
@@ -39,6 +41,7 @@ import life.afor.code.tourguide.app.model.FoursquareResponse;
 import life.afor.code.tourguide.app.model.FoursquareResults;
 import life.afor.code.tourguide.app.model.FoursquareVenue;
 import life.afor.code.tourguide.app.refs.FoursquareService;
+import life.afor.code.tourguide.utils.RecyclerItemClickListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,7 +78,7 @@ public class PickerActivity extends AppCompatActivity implements
             Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
             if (mLastLocation != null) {
-                String userLL = mLastLocation.getLatitude() + "," + mLastLocation.getLongitude();
+                final String userLL = mLastLocation.getLatitude() + "," + mLastLocation.getLongitude();
                 double userLLAcc = mLastLocation.getAccuracy();
                 locationTv.setText(userLL);
                 try {
@@ -121,7 +124,7 @@ public class PickerActivity extends AppCompatActivity implements
                         FoursquareJSON fjson = response.body();
                         FoursquareResponse fr = fjson.getResponse();
                         FoursquareGroup fg = fr.getGroup();
-                        List<FoursquareResults> frs = fg.getResults();
+                        final List<FoursquareResults> frs = fg.getResults();
                         Collections.sort(frs, new Comparator<FoursquareResults>() {
                             @Override
                             public int compare(FoursquareResults foursquareResults, FoursquareResults t1) {
@@ -146,6 +149,15 @@ public class PickerActivity extends AppCompatActivity implements
                         PickerAdapter pickerAdapter = new PickerAdapter(frs, PickerActivity.this);
                         recv.setLayoutManager(new LinearLayoutManager(PickerActivity.this));
                         recv.setAdapter(pickerAdapter);
+                        recv.addOnItemTouchListener(new RecyclerItemClickListener(PickerActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Intent i = new Intent(PickerActivity.this, DetailActivity.class);
+                                i.putExtra("presentLocation", userLL);
+                                i.putExtra("toLocation", frs.get(position).getVenue().getLocation().address);
+                                startActivity(i);
+                            }
+                        }));
                     }
 
                     @Override
