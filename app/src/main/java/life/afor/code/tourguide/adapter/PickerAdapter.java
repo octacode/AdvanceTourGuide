@@ -1,23 +1,33 @@
 package life.afor.code.tourguide.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import life.afor.code.tourguide.R;
+import life.afor.code.tourguide.activity.PickerActivity;
 import life.afor.code.tourguide.app.model.FoursquareResults;
 
 public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.PickerViewHolder>{
 
     private List<FoursquareResults> foursquareResults;
+    private Context mContext;
 
-    public PickerAdapter(List<FoursquareResults> foursquareResults) {
+    public PickerAdapter(List<FoursquareResults> foursquareResults, Context context) {
         this.foursquareResults = foursquareResults;
+        mContext = context;
     }
 
     public class PickerViewHolder extends RecyclerView.ViewHolder{

@@ -128,9 +128,22 @@ public class PickerActivity extends AppCompatActivity implements
                                 return Double.compare(t1.getVenue().getRating(), foursquareResults.getVenue().getRating());
                             }
                         });
+                        for(int i=0; i<frs.size(); i++) {
+                            String ll = frs.get(i).getVenue().getLocation().lat+","+frs.get(i).getVenue().getLocation().lng;
+                            String location = ll;
+                            try {
+                                location = new fetchAddress().execute(ll).get().getAddressLine(0);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
+                            frs.get(i).getVenue().getLocation().address = location;
+                        }
+
                         progressBar.setVisibility(View.GONE);
                         RecyclerView recv = (RecyclerView)findViewById(R.id.recv);
-                        PickerAdapter pickerAdapter = new PickerAdapter(frs);
+                        PickerAdapter pickerAdapter = new PickerAdapter(frs, PickerActivity.this);
                         recv.setLayoutManager(new LinearLayoutManager(PickerActivity.this));
                         recv.setAdapter(pickerAdapter);
                     }

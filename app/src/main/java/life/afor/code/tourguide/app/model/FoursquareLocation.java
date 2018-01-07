@@ -13,10 +13,10 @@ public class FoursquareLocation {
     public String address;
 
     // The latitude of the location.
-    double lat;
+    public double lat;
 
     // The longitude of the location.
-    double lng;
+    public double lng;
 
     // The distance of the location, calculated from the specified location.
     int distance;
