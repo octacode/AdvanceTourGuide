@@ -53,14 +53,14 @@ public class DetailActivity extends AppCompatActivity{
         final double presentLat = Double.parseDouble(split[0]), presentLon = Double.parseDouble(split[1]);
         double lat = foursquareResults.getVenue().getLocation().lat;
         double lng = foursquareResults.getVenue().getLocation().lng;
-        baseUrl = baseUrl + lat + "&lon=" + lng + "&appid=c6867299216e9be87c062428b6315b07";
+        baseUrl = baseUrl + lat + "&lon=" + lng + "&units=metric&appid=c6867299216e9be87c062428b6315b07";
         weatherDesc = findViewById(R.id.description);
         minTemp = findViewById(R.id.min_temp);
         rating = findViewById(R.id.rating);
         maxTemp = findViewById(R.id.max_temp);
         windSpeed = findViewById(R.id.wind_speed);
         address = findViewById(R.id.address);
-        address.setText("Address: "+foursquareResults.getVenue().getLocation().address);
+        address.setText("Address: " + foursquareResults.getVenue().getLocation().address);
         rating.setText(String.valueOf(foursquareResults.getVenue().getRating()));
 
         //DISPLAYS MAP
@@ -85,10 +85,10 @@ public class DetailActivity extends AppCompatActivity{
         try {
             String report = new WeatherTask().execute().get();
             WeatherReport weatherReport = getWeatherDataFromJSON(report);
-            weatherDesc.setText(Html.fromHtml("<b>Description: </b>") + weatherReport.getDescription().substring(0, 1).toUpperCase() + weatherReport.getDescription().substring(1));
-            minTemp.setText(Html.fromHtml("<b>Minimum Temperature: </b>") + toCelsius(Double.parseDouble(weatherReport.getMinTemp())));
-            maxTemp.setText(Html.fromHtml("<b>Maximum Temperature: </b>") + toCelsius(Double.parseDouble(weatherReport.getMaxTemp())));
-            windSpeed.setText(Html.fromHtml("<b>Wind Speed: </b>") + weatherReport.getSpeed() + " km/H");
+            weatherDesc.setText("Description: " + weatherReport.getDescription().substring(0, 1).toUpperCase() + weatherReport.getDescription().substring(1));
+            minTemp.setText("Minimum Temperature: " + weatherReport.getMinTemp()+(char) 0x00B0+"C");
+            maxTemp.setText("Maximum Temperature: " + weatherReport.getMaxTemp()+(char) 0x00B0+"C");
+            windSpeed.setText("Wind Speed: " + weatherReport.getSpeed() + " km/H");
         } catch (InterruptedException | JSONException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -179,10 +179,5 @@ public class DetailActivity extends AppCompatActivity{
             return new WeatherReport(description, maxTemp, minTemp, speed);
         }
         return null;
-    }
-
-    private String toCelsius(double f){
-        double c = (f-32) * 5 / 9;
-        return String.valueOf(c);
     }
 }

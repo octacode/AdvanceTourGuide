@@ -57,15 +57,22 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_weight="3"
+                    android:padding="4sp"
                     android:layout_gravity="center"
+                    android:layout_margin="4sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/top_pics" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8sp"
+                    android:padding="4sp"
                     android:layout_gravity="center"
                     android:text="Top Picks"
                     />
@@ -83,15 +90,22 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_weight="3"
+                    android:padding="4sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
+                    android:layout_margin="4sp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/food" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8sp"
+                    android:padding="4sp"
                     android:layout_gravity="center"
                     android:text="Food"
                     />
@@ -110,14 +124,21 @@
                 <ImageView
                     android:layout_weight="3"
                     android:layout_gravity="center"
+                    android:layout_margin="4sp"
+                    android:padding="4sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/coffee" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8sp"
+                    android:padding="4sp"
                     android:layout_gravity="center"
                     android:text="Cafe"
                     />
@@ -144,14 +165,21 @@
                 <ImageView
                     android:layout_weight="3"
                     android:layout_gravity="center"
+                    android:layout_margin="4sp"
+                    android:padding="4sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/night_life" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8sp"
+                    android:padding="4sp"
                     android:layout_gravity="center"
                     android:text="Night Life"
                     />
@@ -170,14 +198,21 @@
                 <ImageView
                     android:layout_weight="3"
                     android:layout_gravity="center"
+                    android:layout_margin="4sp"
+                    android:padding="4sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/fun" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8sp"
+                    android:padding="4sp"
                     android:layout_gravity="center"
                     android:text="Fun"
                     />
@@ -196,15 +231,22 @@
                 <ImageView
                     android:layout_weight="3"
                     android:layout_gravity="center"
+                    android:layout_margin="4sp"
+                    android:padding="4sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/shopping" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8sp"
                     android:layout_gravity="center"
+                    android:padding="4sp"
                     android:text="Shopping"
                     />
             </LinearLayout>
