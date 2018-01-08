@@ -9,6 +9,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +35,12 @@ import life.afor.code.tourguide.R;
 import life.afor.code.tourguide.app.model.FoursquareResults;
 import life.afor.code.tourguide.app.model.WeatherReport;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity{
 
     FoursquareResults foursquareResults;
     String baseUrl = "http://api.openweathermap.org/data/2.5/weather?lat=";
-    TextView weatherDesc, minTemp, maxTemp, windSpeed, address;
+    TextView weatherDesc, minTemp, maxTemp, windSpeed, address, rating;
+    SupportMapFragment supportMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +48,46 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         String present = getIntent().getStringExtra("presentLocation");
         foursquareResults = (FoursquareResults) getIntent().getSerializableExtra("toLocation");
+        String split[] = present.split(",");
+        final double presentLat = Double.parseDouble(split[0]), presentLon = Double.parseDouble(split[1]);
         double lat = foursquareResults.getVenue().getLocation().lat;
         double lng = foursquareResults.getVenue().getLocation().lng;
         baseUrl = baseUrl + lat + "&lon=" + lng + "&appid=c6867299216e9be87c062428b6315b07";
         weatherDesc = findViewById(R.id.description);
         minTemp = findViewById(R.id.min_temp);
+        rating = findViewById(R.id.rating);
         maxTemp = findViewById(R.id.max_temp);
         windSpeed = findViewById(R.id.wind_speed);
         address = findViewById(R.id.address);
         address.setText("Address: "+foursquareResults.getVenue().getLocation().address);
+        rating.setText(String.valueOf(foursquareResults.getVenue().getRating()));
+
+        //DISPLAYS MAP
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                googleMap.getUiSettings().setZoomGesturesEnabled(true);
+                googleMap.getUiSettings().setRotateGesturesEnabled(true);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(foursquareResults.getVenue().getLocation().lat, foursquareResults.getVenue().getLocation().lng)))
+                        .setTitle(foursquareResults.getVenue().getName());
+
+                googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(presentLat, presentLon)).title("Your Location")).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(foursquareResults.getVenue().getLocation().lat, foursquareResults.getVenue().getLocation().lng), 10));
+            }
+        });
+
         try {
             String report = new WeatherTask().execute().get();
             WeatherReport weatherReport = getWeatherDataFromJSON(report);
-            weatherDesc.setText("Description: "+weatherReport.getDescription());
-            minTemp.setText("Minimum Temperature: "+weatherReport.getMinTemp());
-            maxTemp.setText("Maximum Temperature: "+weatherReport.getMaxTemp());
-            windSpeed.setText("Wind Speed: "+weatherReport.getSpeed());
+            weatherDesc.setText("Description: " + weatherReport.getDescription().substring(0, 1).toUpperCase() + weatherReport.getDescription().substring(1));
+            minTemp.setText("Minimum Temperature: " + weatherReport.getMinTemp());
+            maxTemp.setText("Maximum Temperature: " + weatherReport.getMaxTemp());
+            windSpeed.setText("Wind Speed: " + weatherReport.getSpeed());
         } catch (InterruptedException | JSONException | ExecutionException e) {
             e.printStackTrace();
         }
