@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -84,10 +85,10 @@ public class DetailActivity extends AppCompatActivity{
         try {
             String report = new WeatherTask().execute().get();
             WeatherReport weatherReport = getWeatherDataFromJSON(report);
-            weatherDesc.setText("Description: " + weatherReport.getDescription().substring(0, 1).toUpperCase() + weatherReport.getDescription().substring(1));
-            minTemp.setText("Minimum Temperature: " + weatherReport.getMinTemp());
-            maxTemp.setText("Maximum Temperature: " + weatherReport.getMaxTemp());
-            windSpeed.setText("Wind Speed: " + weatherReport.getSpeed());
+            weatherDesc.setText(Html.fromHtml("<b>Description: </b>") + weatherReport.getDescription().substring(0, 1).toUpperCase() + weatherReport.getDescription().substring(1));
+            minTemp.setText(Html.fromHtml("<b>Minimum Temperature: </b>") + toCelsius(Double.parseDouble(weatherReport.getMinTemp())));
+            maxTemp.setText(Html.fromHtml("<b>Maximum Temperature: </b>") + toCelsius(Double.parseDouble(weatherReport.getMaxTemp())));
+            windSpeed.setText(Html.fromHtml("<b>Wind Speed: </b>") + weatherReport.getSpeed() + " km/H");
         } catch (InterruptedException | JSONException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -178,5 +179,10 @@ public class DetailActivity extends AppCompatActivity{
             return new WeatherReport(description, maxTemp, minTemp, speed);
         }
         return null;
+    }
+
+    private String toCelsius(double f){
+        double c = (f-32) * 5 / 9;
+        return String.valueOf(c);
     }
 }
