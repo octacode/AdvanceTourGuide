@@ -89,29 +89,22 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void checkEnabled() {
-        LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-        boolean gps_enabled = false;
-        boolean network_enabled = false;
-
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false, network_enabled = false;
         try {
             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch(Exception ex) {}
-
-        try {
+        }catch (Exception ex){}
+        try{
             network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {}
-
-        if(!gps_enabled && !network_enabled) {
-            // notify user
+        }catch (Exception ex){}
+        if(!gps_enabled && !network_enabled){
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            dialog.setMessage("GPS is not enabled");
-            dialog.setPositiveButton("Open location settings", new DialogInterface.OnClickListener() {
+            dialog.setMessage("Location services are not turned on. Please turn it on from the settings");
+            dialog.setPositiveButton("Okay!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                    // TODO Auto-generated method stub
-                    Intent myIntent = new Intent( Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivity(myIntent);
-                    //get gps
                 }
             });
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
