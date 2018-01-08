@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             List<User> allUsers = new FetchUsers().execute().get();
-            total.setText("Total number of users are "+allUsers.size());
+            total.setText("Total number of users are " + allUsers.size());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private int getIndexOf(List<User> allEmps, String username, String password) {
         for (int i = 0; i < allEmps.size(); i++) {
-            if (username.matches(allEmps.get(i).getFirstName()) && password.matches(allEmps.get(i).getPassword())) {
+            if (username.matches(allEmps.get(i).getFirstName()+" "+allEmps.get(i).getLastName()) && password.matches(allEmps.get(i).getPassword())) {
                 return i;
             }
         }

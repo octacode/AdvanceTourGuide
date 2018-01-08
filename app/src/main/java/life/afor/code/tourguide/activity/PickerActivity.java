@@ -57,7 +57,6 @@ public class PickerActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picker);
-        getSupportActionBar().setTitle(getIntent().getStringExtra(Intent.EXTRA_TEXT));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         locationTv = (TextView)findViewById(R.id.location);
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -105,7 +104,6 @@ public class PickerActivity extends AppCompatActivity implements
                         FoursquareJSON fjson = response.body();
                         FoursquareResponse fr = fjson.getResponse();
                         List<FoursquareVenue> frs = fr.getVenues();
-                        FoursquareVenue fv = frs.get(0);
                     }
 
                     @Override
@@ -169,42 +167,49 @@ public class PickerActivity extends AppCompatActivity implements
     private Call<FoursquareJSON> getCall(FoursquareService foursquare, String userLL, double userLLAcc){
         switch(getIntent().getStringExtra(Intent.EXTRA_TEXT)) {
             case "topPicks":
+                getSupportActionBar().setTitle("Top Picks");
                 return foursquare.searchTopPicks(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
                         userLLAcc);
             case "food":
+                getSupportActionBar().setTitle("Food");
                 return foursquare.searchFood(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
                         userLLAcc);
             case "coffee":
+                getSupportActionBar().setTitle("Cafe");
                 return foursquare.searchCoffee(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
                         userLLAcc);
             case "drinks":
+                getSupportActionBar().setTitle("Night Life");
                 return foursquare.searchNightLife(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
                         userLLAcc);
             case "outdoors":
+                getSupportActionBar().setTitle("Outdoors");
                 return foursquare.searchFun(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
                         userLLAcc);
             case "shops":
+                getSupportActionBar().setTitle("Shops");
                 return foursquare.searchShopping(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
                         userLL,
                         userLLAcc);
             default:
+                getSupportActionBar().setTitle(getIntent().getStringExtra(Intent.EXTRA_TEXT));
                 return foursquare.searchPlaces(
                         getString(R.string.foursquare_client_id),
                         getString(R.string.foursquare_client_secret),
