@@ -22,17 +22,14 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.vision.text.Text;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-import life.afor.code.tourguide.DetailActivity;
 import life.afor.code.tourguide.R;
 import life.afor.code.tourguide.adapter.PickerAdapter;
 import life.afor.code.tourguide.app.model.FoursquareGroup;
@@ -154,7 +151,7 @@ public class PickerActivity extends AppCompatActivity implements
                             public void onItemClick(View view, int position) {
                                 Intent i = new Intent(PickerActivity.this, DetailActivity.class);
                                 i.putExtra("presentLocation", userLL);
-                                i.putExtra("toLocation", frs.get(position).getVenue().getLocation().address);
+                                i.putExtra("toLocation", frs.get(position));
                                 startActivity(i);
                             }
                         }));

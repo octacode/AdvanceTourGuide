@@ -7,7 +7,9 @@
 
 package life.afor.code.tourguide.app.model;
 
-public class FoursquareResults {
+import java.io.Serializable;
+
+public class FoursquareResults implements Serializable{
 
     // A venue object within the results.
     FoursquareVenue venue;

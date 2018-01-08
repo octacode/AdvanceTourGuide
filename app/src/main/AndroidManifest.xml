@@ -33,7 +33,7 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:theme="@style/login" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".activity.DetailActivity"></activity>
     </application>
 
 </manifest>

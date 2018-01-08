@@ -7,7 +7,9 @@
 
 package life.afor.code.tourguide.app.model;
 
-public class FoursquareLocation {
+import java.io.Serializable;
+
+public class FoursquareLocation implements Serializable{
 
     // The address of the location.
     public String address;
